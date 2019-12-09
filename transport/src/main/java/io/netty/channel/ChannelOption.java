@@ -106,10 +106,22 @@ public class ChannelOption<T> extends AbstractConstant<ChannelOption<T>> {
 
     public static final ChannelOption<Boolean> SO_BROADCAST = valueOf("SO_BROADCAST");
     public static final ChannelOption<Boolean> SO_KEEPALIVE = valueOf("SO_KEEPALIVE");
+    // ChannelOption.SO_SNDBUF参数对应于套接字选项中的SO_SNDBUF，
+    // ChannelOption.SO_RCVBUF参数对应于套接字选项中的SO_RCVBUF
+    // 这两个参数用于操作接收缓冲区和发送缓冲区的大小，接收缓冲区用于保存网络协议站内收到的数据，
+    // 直到应用程序读取成功，发送缓冲区用于保存发送数据，直到发送成功。
     public static final ChannelOption<Integer> SO_SNDBUF = valueOf("SO_SNDBUF");
     public static final ChannelOption<Integer> SO_RCVBUF = valueOf("SO_RCVBUF");
     public static final ChannelOption<Boolean> SO_REUSEADDR = valueOf("SO_REUSEADDR");
+    // ChannelOption.SO_LINGER参数对应于套接字选项中的SO_LINGER,
+    // Linux内核默认的处理方式是当用户调用close（）方法的时候，函数返回，
+    // 在可能的情况下，尽量发送数据，不一定保证会发生剩余的数据，造成了数据的不确定性，
+    // 使用SO_LINGER可以阻塞close()的调用时间，直到数据完全发送
     public static final ChannelOption<Integer> SO_LINGER = valueOf("SO_LINGER");
+    // ChannelOption.SO_BACKLOG对应的是tcp/ip协议listen函数中的backlog参数，
+    // 函数listen(int socketfd,int backlog)用来初始化服务端可连接队列，
+    // 服务端处理客户端连接请求是顺序处理的，所以同一时间只能处理一个客户端连接，
+    // 多个客户端来的时候，服务端将不能处理的客户端连接请求放在队列中等待处理，backlog参数指定了队列的大小
     public static final ChannelOption<Integer> SO_BACKLOG = valueOf("SO_BACKLOG");
     public static final ChannelOption<Integer> SO_TIMEOUT = valueOf("SO_TIMEOUT");
 

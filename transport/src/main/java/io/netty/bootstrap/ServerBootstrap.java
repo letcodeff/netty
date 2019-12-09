@@ -200,6 +200,10 @@ public class ServerBootstrap extends AbstractBootstrap<ServerBootstrap, ServerCh
 
                 // 添加 ServerBootstrapAcceptor 到 pipeline 中。
                 // 使用 EventLoop 执行的原因，参见 https://github.com/lightningMan/netty/commit/4638df20628a8987c8709f0f8e5f3679a914ce1a
+                // 我们通过EventLoop添加此处理程序，
+                // 因为用户可能已使用ChannelInitializer作为处理程序。
+                // 在这种情况下，仅在此方法返回后才调用initChannel（...）方法。
+                // 因此，我们需要确保以延迟的方式添加处理程序，以便将所有用户处理程序放置在ServerBootstrapAcceptor的前面。
                 ch.eventLoop().execute(new Runnable() {
                     @Override
                     public void run() {

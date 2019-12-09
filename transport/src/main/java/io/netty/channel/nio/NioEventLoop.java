@@ -670,7 +670,7 @@ public final class NioEventLoop extends SingleThreadEventLoop {
         }
     }
 
-    private void processSelectedKeysOptimized() {
+        private void processSelectedKeysOptimized() {
         // 遍历数组
         for (int i = 0; i < selectedKeys.size; ++i) {
             final SelectionKey k = selectedKeys.keys[i];
